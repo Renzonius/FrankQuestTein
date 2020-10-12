@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Testing/ScenesTesting/Scenes Questions.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Testing/ScenesTesting/JugadorEscena.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Testing/ScenesTesting/Scene Answer.tscn" type="PackedScene" id=3]
+
+[node name="Node" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 436.344, 426.812 )
+
+[node name="OBJQuestion" parent="." instance=ExtResource( 1 )]
+position = Vector2( 520.598, 180.701 )
+id_question = 1
+
+[node name="OBJQuestion2" parent="." instance=ExtResource( 1 )]
+modulate = Color( 0, 0.0156863, 0.988235, 1 )
+position = Vector2( 337.764, 172.292 )
+id_question = 2
+
+[node name="Answer" parent="." instance=ExtResource( 3 )]
+position = Vector2( 687.141, 362.448 )
+collision_layer = 2
+id_answer = 1
