@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://game/player/PlayerT.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 29.306, 29.5273 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "right"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Panel/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Bien ahi" ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "wrong"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Panel/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Ups me equivoque" ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+z_index = 30
+z_as_relative = false
+collision_mask = 2
+script = ExtResource( 1 )
+speed = Vector2( 400, 400 )
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.0941176, 0.12549, 0.466667, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+margin_left = -43.4061
+margin_top = -90.0824
+margin_right = 45.5939
+margin_bottom = -35.0824
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 4.0
+margin_right = -9.0
+margin_bottom = -5.0
+text = "Ups me equivoque"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/init = SubResource( 2 )
+anims/right = SubResource( 3 )
+anims/wrong = SubResource( 4 )

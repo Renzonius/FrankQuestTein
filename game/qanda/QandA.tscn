@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/qanda/Object.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/qanda/QandA.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 64 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 64, 64 )
+
+[node name="QandA" type="Node2D" groups=[
+"questions_answers",
+]]
+script = ExtResource( 2 )
+
+[node name="Question" parent="." groups=[
+"questions",
+] instance=ExtResource( 1 )]
+is_question = true
+
+[node name="CollisionShape2D" parent="Question/PlayerInteraction" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="Question" index="2"]
+modulate = Color( 0.0313726, 1, 0, 1 )
+
+[node name="Panel" parent="Question" index="3"]
+visible = false
+
+[node name="TextEdit" parent="Question/Panel" index="0"]
+visible = false
+
+[node name="Answer" parent="." groups=[
+"answers",
+] instance=ExtResource( 1 )]
+position = Vector2( 210.484, 0 )
+
+[node name="CollisionShape2D" parent="Answer/PlayerInteraction" index="0"]
+shape = SubResource( 2 )
+
+[node name="Sprite" parent="Answer" index="2"]
+modulate = Color( 0.705882, 0, 0, 1 )
+
+[node name="Panel" parent="Answer" index="3"]
+visible = false
+
+[node name="TextEdit" parent="Answer/Panel" index="0"]
+visible = false
+
+[editable path="Question"]
+
+[editable path="Answer"]
