@@ -19,6 +19,6 @@ position = Vector2( 337.764, 172.292 )
 id_question = 2
 
 [node name="Answer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 687.141, 362.448 )
+position = Vector2( 700.222, 368.394 )
 collision_layer = 2
 id_answer = 1
