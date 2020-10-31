@@ -13,6 +13,7 @@ extents = Vector2( 44.75, 46.5 )
 [node name="Question" type="StaticBody2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Question"]
+visible = false
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Question"]
