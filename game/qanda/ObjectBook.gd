@@ -19,14 +19,16 @@ func set_is_showing(value: bool) -> void:
 
 func _ready() -> void:
 	$Panel/TextEdit.text = text
-	_select_animation_book() #Seleccionamos la animacion correcta 
 
 
 func _on_PlayerInteraction_body_entered(body: Node) -> void:
 	player_in_range = true
+	print("Jugador entro", self.name)
 
 func _on_PlayerInteraction_body_exited(body: Node) -> void:
 	player_in_range = false
+	print("Jugador salio", self)
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_select") and player_in_range and not is_showing:
@@ -39,14 +41,5 @@ func _input(event: InputEvent) -> void:
 			emit_signal("answer_selected")
 
 
-func _select_animation_book():
-		match get_parent().name:
-			"QandAOne":
-				animation_frame = "open_book"
-			"QandATwo":
-				animation_frame = "open_book_Q2"
-			"QandAThree":
-				animation_frame = "open_book_Q3"
-			_:
-				print("Animation Fail")
+
 

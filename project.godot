@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Question",
 "language": "GDScript",
 "path": "res://Testing/ScriptTest/ScriptQuestions.gd"
+}, {
+"base": "Node2D",
+"class": "TimerScript",
+"language": "GDScript",
+"path": "res://Testing/ScriptTest/TimerScript.gd"
 } ]
 _global_script_class_icons={
 "Answer": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "Player": "",
 "PlayerT": "",
 "QandA": "",
-"Question": ""
+"Question": "",
+"TimerScript": ""
 }
 
 [application]

@@ -1,7 +1,7 @@
 class_name PlayerT
 extends KinematicBody2D
 
-export var speed := Vector2(200.0, 200.0)
+export var speed := Vector2(1.0, 1.0)
 
 var object_to_interact:ObjectBook
 var can_move := true setget set_can_move

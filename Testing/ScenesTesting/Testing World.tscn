@@ -8,6 +8,7 @@
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 436.344, 426.812 )
+speed = 300
 
 [node name="OBJQuestion" parent="." instance=ExtResource( 1 )]
 position = Vector2( 520.598, 180.701 )

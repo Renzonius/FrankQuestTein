@@ -6,8 +6,13 @@ var total_q_and_a := 0
 var final_questions_and_answers := []
 var player: PlayerT
 
+#----Timer----
+var timer: TimerScript
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	timer = get_node("Timers")
+	timer.connect("finished", self, "end_time")
 	player = get_node("Player")
 	total_q_and_a = $Questions.get_child_count()
 	select_random_q_and_a()
@@ -38,6 +43,11 @@ func q_and_a_solved() -> void:
 		$Player.set_can_move(false)
 		$AnimationPlayer.play("win")
 		print("GANASTE EL NIVEL")
+
+
+func end_time() ->void:
+	$Player.set_can_move(false)
+	print("PERDISTE")
 
 func hide_questions(q_and_a = null) -> void:
 	get_tree().call_group("questions_answers", "deselect_question", q_and_a)

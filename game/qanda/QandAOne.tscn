@@ -6,7 +6,7 @@
 [ext_resource path="res://Testing/Animations/qandaopen_book.tres" type="Animation" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 60, 70 )
+extents = Vector2( 64, 64 )
 
 [sub_resource type="Animation" id=2]
 length = 0.5
@@ -40,10 +40,9 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 60, 70 )
+extents = Vector2( 64, 64 )
 
 [node name="QandAOne" instance=ExtResource( 1 )]
-scale = Vector2( 1.5, 1.5 )
 
 [node name="Question" parent="." index="0"]
 text = "¿Que hace el perro?"
@@ -55,8 +54,8 @@ shape = SubResource( 1 )
 anims/OpenBook = SubResource( 2 )
 
 [node name="Book" type="Sprite" parent="Question" index="5"]
-position = Vector2( 0, -5 )
-scale = Vector2( 2, 2 )
+position = Vector2( 0, -25 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 7
@@ -77,7 +76,8 @@ margin_left = -68.3909
 margin_right = 66.6091
 
 [node name="page" type="Sprite" parent="Answer" index="5"]
-scale = Vector2( 2, 2 )
+position = Vector2( 0, -25 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 7

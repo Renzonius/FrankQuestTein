@@ -4,7 +4,7 @@
 [ext_resource path="res://Testing/Sprites/LibraryQandA.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 60, 70 )
+extents = Vector2( 64, 64 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "close_book"
@@ -38,7 +38,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 60, 70 )
+extents = Vector2( 64, 64 )
 
 [node name="QandAThree" instance=ExtResource( 1 )]
 
@@ -49,7 +49,8 @@ text = "¿Que engine estamos usando?"
 shape = SubResource( 1 )
 
 [node name="Book" type="Sprite" parent="Question" index="5"]
-scale = Vector2( 2, 2 )
+position = Vector2( 0, -25 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 7
@@ -66,7 +67,8 @@ text = "Godot"
 shape = SubResource( 4 )
 
 [node name="Page" type="Sprite" parent="Answer" index="5"]
-scale = Vector2( 2, 2 )
+position = Vector2( 0, -25 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 7

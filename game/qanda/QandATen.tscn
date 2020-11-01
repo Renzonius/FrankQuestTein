@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/qanda/QandA.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Testing/Sprites/LibraryQandA.png" type="Texture" id=2]
+[ext_resource path="res://Testing/Sprites/LibraryQandA2.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 64 )
@@ -15,14 +15,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 38, 37, 36, 34 ]
+"values": [ 25, 24, 23, 22, 21 ]
 }
 
 [sub_resource type="Animation" id=3]
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Book:frame")
 tracks/0/interp = 1
@@ -30,10 +30,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 27, 29, 37, 38, 39 ]
+"values": [ 21, 22, 23, 24, 25, 26 ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -53,7 +53,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 7
-frame = 34
+frame = 21
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Question" index="6"]
 anims/close_book = SubResource( 2 )
@@ -71,7 +71,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 7
-frame = 40
+frame = 27
 
 [editable path="Question"]
 

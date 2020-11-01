@@ -4,7 +4,7 @@
 [ext_resource path="res://game/qanda/ObjectBook.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28.7031, 26.7363 )
+extents = Vector2( 60, 30 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 99.2501
