@@ -1,18 +1,27 @@
 extends Node
 
+signal timer_update(lvl_max_time)
+signal npc_start_run
+
 export(Array, PackedScene) var questions_and_answers
 
 var total_q_and_a := 0
 var final_questions_and_answers := []
 var player: PlayerT
 
+
+
 #----Timer----
 var timer: TimerScript
+export var lvl_max_time = 5
+export var timer_start_npc = 10
+var time_elapsed = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	timer = get_node("Timers")
-	timer.connect("finished", self, "end_time")
+#	timer = get_node("Timers")
+#	timer.connect("finished", self, "end_time")
 	player = get_node("Player")
 	total_q_and_a = $Questions.get_child_count()
 	select_random_q_and_a()
@@ -44,10 +53,22 @@ func q_and_a_solved() -> void:
 		$AnimationPlayer.play("win")
 		print("GANASTE EL NIVEL")
 
-
-func end_time() ->void:
-	$Player.set_can_move(false)
-	print("PERDISTE")
-
 func hide_questions(q_and_a = null) -> void:
 	get_tree().call_group("questions_answers", "deselect_question", q_and_a)
+
+
+func _on_Timer_timeout() -> void:
+	emit_signal("timer_update",lvl_max_time)
+	if lvl_max_time >0:
+		lvl_max_time -= 1
+	else:
+		$Player.set_can_move(false)
+		print("PERDISTE")
+		#AGREGAR ANIMACION DE PERDER
+		#SUBMENU
+		#-vOLVER A INTENTAR
+		#-IR AL MENU PRINCIPAL
+	
+	if lvl_max_time == timer_start_npc:
+		emit_signal("npc_start_run")
+		#SEÑAL DE SALIDA DEL NPC

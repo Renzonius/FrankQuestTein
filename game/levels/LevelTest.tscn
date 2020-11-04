@@ -11,7 +11,7 @@
 [ext_resource path="res://game/qanda/QandASeven.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Sprites/Tiles/props.tres" type="TileSet" id=10]
 [ext_resource path="res://Assets/Sprites/Tiles/tiles_level_version2.tres" type="TileSet" id=11]
-[ext_resource path="res://Testing/ScenesTesting/SceneTimer.tscn" type="PackedScene" id=12]
+[ext_resource path="res://game/levels/HUD.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.3522, 436.689 )
@@ -49,6 +49,8 @@ tracks/1/keys = {
 [node name="LevelTest" type="Node"]
 script = ExtResource( 2 )
 questions_and_answers = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+lvl_max_time = 60
+timer_start_npc = 50
 
 [node name="Borders" type="StaticBody2D" parent="."]
 position = Vector2( 795.799, 377.989 )
@@ -142,6 +144,7 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 margin_left = 795.799
 margin_top = 377.989
 margin_right = 928.8
@@ -199,5 +202,23 @@ tile_set = ExtResource( 10 )
 format = 1
 tile_data = PoolIntArray( 786424, 13, 0, 786429, 13, 0, 720899, 13, 0, 720902, 12, 0, 720905, 13, 0, 720909, 12, 0, 720912, 13, 0 )
 
-[node name="Timers" parent="." instance=ExtResource( 12 )]
-position = Vector2( 961.912, 267.328 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

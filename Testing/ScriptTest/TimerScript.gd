@@ -7,7 +7,7 @@ var s : int = 60 setget  _set_seconds, _get_seconds
 var label
 
 func _ready() -> void:
-	label = get_node("Timers/Label")
+	label = get_node("Label")
 
 
 func _set_seconds(new_s : int):
