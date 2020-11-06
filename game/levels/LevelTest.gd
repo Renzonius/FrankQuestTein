@@ -1,20 +1,25 @@
 extends Node
 
 signal timer_update(lvl_max_time)
-signal npc_start_run
+signal npc_wake_up_and_patrol
+signal all_q_and_a_completed
+signal patrol_time_over
+signal all_time_over
 
 export(Array, PackedScene) var questions_and_answers
 
 var total_q_and_a := 0
 var final_questions_and_answers := []
 var player: PlayerT
+var npc_franky : EnemyNpc
 
-
+export var patrol_time_npc = 10 
+export var chase_time_npc = 15
 
 #----Timer----
 var timer: TimerScript
-export var lvl_max_time = 5
-export var timer_start_npc = 10
+export var lvl_max_time = 60
+export var timer_start_npc = 50
 var time_elapsed = 0
 
 
@@ -22,7 +27,10 @@ var time_elapsed = 0
 func _ready() -> void:
 #	timer = get_node("Timers")
 #	timer.connect("finished", self, "end_time")
+	
 	player = get_node("Player")
+	npc_franky = get_node("Franky")
+	npc_franky.connect("player_was_captured", self, "_defeated_player")
 	total_q_and_a = $Questions.get_child_count()
 	select_random_q_and_a()
 	for i in range(total_q_and_a):
@@ -49,8 +57,10 @@ func q_and_a_solved() -> void:
 	player.one_solved()
 	total_q_and_a -= 1
 	if total_q_and_a == 0:
+		emit_signal("all_q_and_a_completed") #Señal que se conecta al npc
 		$Player.set_can_move(false)
 		$AnimationPlayer.play("win")
+		$Timer.stop()
 		print("GANASTE EL NIVEL")
 
 func hide_questions(q_and_a = null) -> void:
@@ -61,14 +71,34 @@ func _on_Timer_timeout() -> void:
 	emit_signal("timer_update",lvl_max_time)
 	if lvl_max_time >0:
 		lvl_max_time -= 1
+		if lvl_max_time <= timer_start_npc:
+			if patrol_time_npc > 0:
+				emit_signal("npc_wake_up_and_patrol") #comieza a patrullar 
+				patrol_time_npc -=1
+				print("Tpatrulla ",patrol_time_npc)
+			elif patrol_time_npc <= 0:
+				emit_signal("patrol_time_over") #comienza a perseguir
+				chase_time_npc -=1
+				print("Tpersecucion ",chase_time_npc)
+				if chase_time_npc <=0: #si termina el tiempo de persecucion
+					patrol_time_npc = 2
+					chase_time_npc = 2
 	else:
-		$Player.set_can_move(false)
-		print("PERDISTE")
-		#AGREGAR ANIMACION DE PERDER
-		#SUBMENU
-		#-vOLVER A INTENTAR
-		#-IR AL MENU PRINCIPAL
+		emit_signal("all_time_over")
+		_defeated_player()
+
+
 	
-	if lvl_max_time == timer_start_npc:
-		emit_signal("npc_start_run")
-		#SEÑAL DE SALIDA DEL NPC
+func _defeated_player():
+	$Player.set_can_move(false)
+	$Timer.stop()
+	print("PERDISTE")
+	
+	#AGREGAR ANIMACION DE PERDER
+	#SUBMENU
+	#-vOLVER A INTENTAR
+	#-IR AL MENU PRINCIPAL
+	
+	
+	
+	
