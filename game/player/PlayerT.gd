@@ -6,8 +6,11 @@ export var speed := Vector2(1.0, 1.0)
 var object_to_interact:ObjectBook
 var can_move := true setget set_can_move
 
-onready var can_interact := false setget set_can_interact
 
+onready var can_interact := false setget set_can_interact
+onready var animation_player = $AnimationPlayer
+onready var animation_tree = $AnimationTree
+onready var animation_state = animation_tree.get("parameters/playback")
 
 func set_can_move(value: bool) -> void:
 	can_move = value
@@ -28,7 +31,15 @@ func get_direction() -> Vector2:
 			Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 			Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 		)
+		
+		if direction != Vector2.ZERO:
+			animation_tree.set("parameters/idle/blend_position", direction)
+			animation_tree.set("parameters/walk/blend_position", direction)
+			animation_state.travel("walk")
+		else:
+			animation_state.travel("idle")
 		return direction
+	
 	
 	return Vector2.ZERO
 
