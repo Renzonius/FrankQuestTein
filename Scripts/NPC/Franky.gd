@@ -25,14 +25,13 @@ export var size_tiles : Vector2 #Tañamo de los tiles para el calculo en node_to
 onready var timer_end : = $TimerToChase
 
 
-
 func _ready() -> void:
 	player = owner.get_node("Player")
 	nav_map = owner.get_node("TileMap")
 	nav_map_array = nav_map.get_used_cells() # posiciones/tiles validos
-	print(nav_map_array)
 	magic_AStar = NavMap.new(nav_map_array, size_tiles) # creamos el objeto A*
 	
+#	chase_state.connect("take_position_player", self,"_time_to_move")
 	owner.connect("all_q_and_a_completed", self, "_qandaCompleted")
 	owner.connect("npc_wake_up_and_patrol", self, "_wake_up_franky")
 	owner.connect("patrol_time_over", self, "_chase_start")
@@ -59,10 +58,6 @@ func _physics_process(delta: float) -> void:
 			
 			if path.size() == 0:
 				path = null
-#	_time_to_chase()
-
-
-
 
 
 
@@ -91,12 +86,14 @@ func _process(delta: float) -> void:
 func update_behavior_tree() -> void:
 	behavior_tree.run(self, blackboard, false)
 
-func _time_to_chase():
+func _time_to_move():
+#	position_player = player.global_position
+	my_position = self.position
 	path = magic_AStar.find_path(my_position,position_player)
 	if path:
 		path.remove(0)
-	print("El camino arrecorrer",path)
-	print("Cantidad de pasos ", path.size())
+#	print("El camino arrecorrer",path)
+#	print("Cantidad de pasos ", path.size())
 
 
 
@@ -106,8 +103,24 @@ func _on_Area2D_body_entered(body: Node) -> void:
 		blackboard.set("player_captured", true)
 
 
+
+## Timer que maneja la persecucion 
 func _on_TimerToChase_timeout() -> void:
-	position_player = player.global_position
-	print("aca esta ",position_player)
-	my_position = self.position
-	_time_to_chase()
+	if blackboard.get("patrol_time_finished") and not blackboard.get("chase_time_finished") and not blackboard.get("player_captured") and not blackboard.get("time_over"):
+		position_player = player.global_position
+		_time_to_move()
+
+
+## Timer que maneja la patrulla 
+func _on_TimerToPatrol_timeout() -> void:
+	if not blackboard.get("patrol_time_finished") and  blackboard.get("chase_time_finished") and not blackboard.get("player_captured") and not blackboard.get("time_over"):
+		position_player = _choose_random_cell()
+		_time_to_move()
+
+# Metodo que elige una posicion al azar para la patrulla del npc
+func _choose_random_cell() -> Vector2: 
+	var result : Vector2
+	result = nav_map_array[randi()%nav_map_array.size()]
+	result = magic_AStar.node_to_pos(result)
+	print("este es la celda ",result)
+	return result

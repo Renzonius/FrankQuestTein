@@ -3,7 +3,6 @@ extends ConditionTask
 
 func run(tick: Tick) -> int:
 	if tick.blackboard.get("player_captured"): #si el jugador fue capturado
-#		print("jugador Capturado")
 		return OK
 	elif not tick.blackboard.get("player_captured"): #si el jugador no fue capturado
 		return FAILED

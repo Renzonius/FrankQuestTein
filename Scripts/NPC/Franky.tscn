@@ -91,7 +91,11 @@ script = ExtResource( 3 )
 script = ExtResource( 6 )
 
 [node name="TimerToChase" type="Timer" parent="."]
+autostart = true
+
+[node name="TimerToPatrol" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 [connection signal="body_entered" from="PlayerInteract" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="TimerToChase" to="." method="_on_TimerToChase_timeout"]
+[connection signal="timeout" from="TimerToPatrol" to="." method="_on_TimerToPatrol_timeout"]

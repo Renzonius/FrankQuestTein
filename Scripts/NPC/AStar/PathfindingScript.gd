@@ -15,7 +15,7 @@ var size_tile : Vector2 # Vector el tamaño de los tiles usados en node_to_pos()
 #### Variables onready
 onready var valid_tiles : Array # Posiciones/tiles validos
 
-
+var parent_array : Array
 
 func _init(all_valid_tiles : Array, new_size: Vector2) -> void:
 	valid_tiles = all_valid_tiles
@@ -23,6 +23,7 @@ func _init(all_valid_tiles : Array, new_size: Vector2) -> void:
 
 #### Metodo que encuentra el camino entre el player y el hongo
 func find_path(start, end) -> Array:
+	clearing()
 	start_position = pos_to_node(start) # convierto la posicion del player x,y en un vector c,f
 	end_position = pos_to_node(end) # convierto la posicion del player x,y en un vector c,f
 
@@ -84,6 +85,11 @@ func optimal_path(closed_nodes : Array) -> Array:
 
 
 
+func clearing()->void:
+	parent_array=[]
+	open_set=[]
+	all_set=[]
+	closed_set=[]
 
 
 #### Metodo que detecta los nodos aledaños del nodo en el que estamos parados (current)

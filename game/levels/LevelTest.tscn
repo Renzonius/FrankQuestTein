@@ -43,8 +43,7 @@ tracks/1/keys = {
 [node name="LevelTest" type="Node"]
 script = ExtResource( 2 )
 questions_and_answers = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
-patrol_time_npc = 2
-chase_time_npc = 2
+chase_time_npc = 10
 timer_start_npc = 55
 
 [node name="Questions" type="Node2D" parent="."]
@@ -134,7 +133,7 @@ __meta__ = {
 [node name="TileMap" parent="." instance=ExtResource( 14 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 992.891, 480.891 )
+position = Vector2( 1245.91, 854.177 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
