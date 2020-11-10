@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Sprites/Character/Igor/igor.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25.1524, 36.9721 )
+extents = Vector2( 32, 40 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 11 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -58,8 +58,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "walk_back"
-length = 0.8
+length = 0.4
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -67,7 +68,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 51, 52, 53, 54, 55, 56, 57, 58 ]
@@ -75,8 +76,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "walk_front"
-length = 0.8
+length = 0.4
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -84,7 +86,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 38, 39, 40, 41, 42, 43, 44, 45 ]
@@ -92,7 +94,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "walk_left"
+length = 0.5
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -100,7 +104,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]
@@ -108,7 +112,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=8]
 resource_name = "walk_right"
+length = 0.5
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -116,67 +122,67 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "idle_front"
 
-[sub_resource type="AnimationNodeAnimation" id=32]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "idle_back"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=13]
-blend_point_0/node = SubResource( 29 )
+blend_point_0/node = SubResource( 9 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 30 )
+blend_point_1/node = SubResource( 10 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 31 )
+blend_point_2/node = SubResource( 11 )
 blend_point_2/pos = Vector2( 0, 1 )
-blend_point_3/node = SubResource( 32 )
+blend_point_3/node = SubResource( 12 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "walk_left"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "walk_right"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "walk_front"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "walk_back"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=18]
-blend_point_0/node = SubResource( 33 )
+blend_point_0/node = SubResource( 14 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 34 )
+blend_point_1/node = SubResource( 15 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 35 )
+blend_point_2/node = SubResource( 16 )
 blend_point_2/pos = Vector2( 0, 1 )
-blend_point_3/node = SubResource( 36 )
+blend_point_3/node = SubResource( 17 )
 blend_point_3/pos = Vector2( 0, -1 )
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
 [sub_resource type="AnimationNodeStateMachine" id=21]
 states/idle/node = SubResource( 13 )
 states/idle/position = Vector2( 234, 97 )
 states/walk/node = SubResource( 18 )
 states/walk/position = Vector2( 443, 97 )
-transitions = [ "idle", "walk", SubResource( 27 ), "walk", "idle", SubResource( 28 ) ]
+transitions = [ "idle", "walk", SubResource( 19 ), "walk", "idle", SubResource( 20 ) ]
 start_node = "idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=22]
@@ -189,12 +195,11 @@ script = ExtResource( 1 )
 speed = Vector2( 400, 400 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.749161, 0 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
-frame = 51
+frame = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -237,5 +242,5 @@ tree_root = SubResource( 21 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 22 )
-parameters/idle/blend_position = Vector2( 0, 0 )
-parameters/walk/blend_position = Vector2( 0.00250626, -0.215517 )
+parameters/idle/blend_position = Vector2( -0.000953317, 0.00862074 )
+parameters/walk/blend_position = Vector2( -0.000953317, -0.0172414 )

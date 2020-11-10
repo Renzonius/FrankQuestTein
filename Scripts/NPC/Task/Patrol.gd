@@ -1,5 +1,5 @@
 extends ActionTask
 
 func run(tick: Tick) -> int:
-	print("PATRULLANDO")
+#	print("PATRULLANDO")
 	return OK

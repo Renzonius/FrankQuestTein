@@ -75,11 +75,11 @@ func _on_Timer_timeout() -> void:
 			if patrol_time_npc > 0:
 				emit_signal("npc_wake_up_and_patrol") #comieza a patrullar 
 				patrol_time_npc -=1
-				print("Tpatrulla ",patrol_time_npc)
+#				print("Tpatrulla ",patrol_time_npc)
 			elif patrol_time_npc <= 0:
 				emit_signal("patrol_time_over") #comienza a perseguir
 				chase_time_npc -=1
-				print("Tpersecucion ",chase_time_npc)
+#				print("Tpersecucion ",chase_time_npc)
 				if chase_time_npc <=0: #si termina el tiempo de persecucion
 					patrol_time_npc = 2
 					chase_time_npc = 2
