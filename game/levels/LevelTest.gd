@@ -61,6 +61,7 @@ func q_and_a_solved() -> void:
 		$Player.set_can_move(false)
 		$AnimationPlayer.play("win")
 		$Timer.stop()
+		$Player.animation_state.travel("won")
 		print("GANASTE EL NIVEL")
 
 func hide_questions(q_and_a = null) -> void:
@@ -92,6 +93,7 @@ func _on_Timer_timeout() -> void:
 func _defeated_player():
 	$Player.set_can_move(false)
 	$Timer.stop()
+	$Player.animation_state.travel("lose")
 	print("PERDISTE")
 	
 	#AGREGAR ANIMACION DE PERDER

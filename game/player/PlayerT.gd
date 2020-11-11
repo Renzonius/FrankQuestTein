@@ -35,6 +35,8 @@ func get_direction() -> Vector2:
 		if direction != Vector2.ZERO:
 			animation_tree.set("parameters/idle/blend_position", direction)
 			animation_tree.set("parameters/walk/blend_position", direction)
+			animation_tree.set("parameters/won/blend_position", direction)
+			animation_tree.set("parameters/lose/blend_position", direction)
 			animation_state.travel("walk")
 		else:
 			animation_state.travel("idle")

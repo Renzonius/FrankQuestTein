@@ -7,9 +7,14 @@ signal player_was_captured
 onready var blackboard = $Blackboard
 onready var behavior_tree = $BehaviorTree
 
+onready var animation_player = $AnimationPlayer
+onready var animation_tree = $AnimationTree
+onready var animation_state = animation_tree.get("parameters/playback")
+
 var nav_map: TileMap
 var nav_map_array : Array
 var player : KinematicBody2D
+
 
 var magic_AStar : NavMap
 var my_position: Vector2
@@ -17,6 +22,7 @@ var position_player : Vector2
 var path #Camino a seguir
 
 const MOV_SPEED := 200
+var can_move := true setget set_can_move
 const POINT_RADIUS := 2
 
 #export var speed = 400
@@ -24,6 +30,11 @@ export var size_tiles : Vector2 #Tañamo de los tiles para el calculo en node_to
 
 onready var timer_end : = $TimerToChase
 
+
+func set_can_move(new_value : bool ) -> void:
+	can_move = new_value
+func get_can_move()->bool:
+	return can_move
 
 func _ready() -> void:
 	player = owner.get_node("Player")
@@ -47,29 +58,46 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if path:
+	if path and can_move:
 		var target = path[0]
 		var direction: Vector2 = (target - position).normalized()
 		
 		position += direction * MOV_SPEED * delta
 		
+		 
 		if position.distance_to(target) < POINT_RADIUS:
 			path.remove(0)
-			
+				
 			if path.size() == 0:
 				path = null
+		
+		if direction != Vector2.ZERO :
+			animation_tree.set("parameters/idle/blend_position", direction)
+			animation_tree.set("parameters/patrol/blend_position", direction)
+			animation_tree.set("parameters/persuit/blend_position", direction)
+			
+			if blackboard.get("chase_time_finished") and not blackboard.get("patrol_time_finished"):
+				animation_state.travel("patrol")
+			elif blackboard.get("patrol_time_finished") and not blackboard.get("chase_time_finished"):
+				animation_state.travel("persuit") 
+	else: 
+		animation_state.travel("idle")
+			 
 
 
 
 
 
 func _qandaCompleted():
+	set_can_move(false)
 	blackboard.set("q_and_a_completed", true)
 
 func _finished_time():
+	set_can_move(false)
 	blackboard.set("time_over", true)
 
 func _wake_up_franky():
+	set_can_move(true)
 	blackboard.set("idle", false)
 	blackboard.set("wake_up", true)
 	blackboard.set("patrol_time_finished", false)
@@ -106,14 +134,14 @@ func _on_Area2D_body_entered(body: Node) -> void:
 
 ## Timer que maneja la persecucion 
 func _on_TimerToChase_timeout() -> void:
-	if blackboard.get("patrol_time_finished") and not blackboard.get("chase_time_finished") and not blackboard.get("player_captured") and not blackboard.get("time_over"):
+	if blackboard.get("patrol_time_finished") and not blackboard.get("chase_time_finished") and not blackboard.get("player_captured") and not blackboard.get("time_over") and not blackboard.get("player_captured") and not blackboard.get("time_over") and not blackboard.get("q_and_a_completed"):
 		position_player = player.global_position
 		_time_to_move()
 
 
 ## Timer que maneja la patrulla 
 func _on_TimerToPatrol_timeout() -> void:
-	if not blackboard.get("patrol_time_finished") and  blackboard.get("chase_time_finished") and not blackboard.get("player_captured") and not blackboard.get("time_over"):
+	if not blackboard.get("patrol_time_finished") and  blackboard.get("chase_time_finished") and not blackboard.get("player_captured") and not blackboard.get("time_over") and not blackboard.get("q_and_a_completed"):
 		position_player = _choose_random_cell()
 		_time_to_move()
 

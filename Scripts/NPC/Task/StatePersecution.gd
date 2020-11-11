@@ -2,7 +2,7 @@ extends ActionTask
 
 
 func run(tick: Tick) -> int:
-#	print("PERSIGUIENDO")
+	print("PERSIGUIENDO")
 	return OK
 	
 
