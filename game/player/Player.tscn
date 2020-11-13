@@ -3,8 +3,9 @@
 [ext_resource path="res://game/player/PlayerT.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Character/Igor/IGOR20.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 40 )
+[sub_resource type="CapsuleShape2D" id=44]
+radius = 28.0
+height = 15.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Lose"
@@ -298,7 +299,7 @@ graph_offset = Vector2( -199, -0.725221 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=43]
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 0, 32 )
+position = Vector2( 0, 40 )
 z_index = 30
 z_as_relative = false
 collision_mask = 2
@@ -306,7 +307,7 @@ script = ExtResource( 1 )
 speed = Vector2( 400, 400 )
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 0, -32 )
+position = Vector2( 0, -40 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 6
@@ -314,8 +315,8 @@ hframes = 7
 frame = 22
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -32 )
-shape = SubResource( 1 )
+position = Vector2( 0, -30 )
+shape = SubResource( 44 )
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -362,3 +363,19 @@ parameters/idle/blend_position = Vector2( -0.107143, 0.215517 )
 parameters/lose/blend_position = Vector2( 0, -0.0206186 )
 parameters/walk/blend_position = Vector2( 0.0967742, 0.310345 )
 parameters/won/blend_position = Vector2( 0, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.5, 1.5 )
+limit_bottom = 1550
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 6.5
+drag_margin_left = 0.5
+drag_margin_top = 0.5
+drag_margin_right = 0.5
+drag_margin_bottom = 0.5
+__meta__ = {
+"_editor_description_": ""
+}

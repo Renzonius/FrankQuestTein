@@ -294,6 +294,7 @@ start_node = "idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
 [node name="Franky" type="KinematicBody2D"]
+position = Vector2( 0, 32 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 8 )
@@ -302,17 +303,19 @@ size_tiles = Vector2( 32, 32 )
 [node name="PlayerInteract" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteract"]
+position = Vector2( 0, -32 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1.0042, 0.18502 )
+position = Vector2( 0, -32 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 7
-frame = 1
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -32 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

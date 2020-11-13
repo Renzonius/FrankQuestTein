@@ -59,7 +59,7 @@ func q_and_a_solved() -> void:
 	if total_q_and_a == 0:
 		emit_signal("all_q_and_a_completed") #Señal que se conecta al npc
 		$Player.set_can_move(false)
-		$AnimationPlayer.play("win")
+#		$AnimationPlayer.play("win")
 		$Timer.stop()
 		$Player.animation_state.travel("won")
 		print("GANASTE EL NIVEL")

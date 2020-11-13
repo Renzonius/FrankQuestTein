@@ -10,8 +10,8 @@
 [ext_resource path="res://game/qanda/QandASix.tscn" type="PackedScene" id=8]
 [ext_resource path="res://game/qanda/QandASeven.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Sprites/Tiles/TILES_MASTER.tres" type="TileSet" id=10]
+[ext_resource path="res://Assets/Scenes/Objects/HUDScene.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/NPC/Franky.tscn" type="PackedScene" id=12]
-[ext_resource path="res://game/levels/HUD.gd" type="Script" id=13]
 [ext_resource path="res://game/levels/LevelTest2.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=1]
@@ -69,7 +69,7 @@ position = Vector2( -459.321, 65.806 )
 anims/win = SubResource( 1 )
 
 [node name="Control" type="Control" parent="."]
-modulate = Color( 0.615686, 0.609412, 0.609412, 0.4 )
+modulate = Color( 1, 1, 1, 0 )
 light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -159,22 +159,7 @@ drag_margin_bottom = 0.5
 [node name="Franky" parent="." instance=ExtResource( 12 )]
 position = Vector2( 745.563, 468.575 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HUD" type="Control" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="CanvasLayer/HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CanvasLayer" parent="." instance=ExtResource( 11 )]
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

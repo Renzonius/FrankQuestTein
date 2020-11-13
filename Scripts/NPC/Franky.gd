@@ -21,7 +21,7 @@ var my_position: Vector2
 var position_player : Vector2
 var path #Camino a seguir
 
-const MOV_SPEED := 200
+var MOV_SPEED := 200
 var can_move := true setget set_can_move
 const POINT_RADIUS := 2
 
@@ -38,7 +38,7 @@ func get_can_move()->bool:
 
 func _ready() -> void:
 	player = owner.get_node("Player")
-	nav_map = owner.get_node("TileMap")
+	nav_map = owner.get_node("NavMap")
 	nav_map_array = nav_map.get_used_cells() # posiciones/tiles validos
 	magic_AStar = NavMap.new(nav_map_array, size_tiles) # creamos el objeto A*
 	
@@ -98,12 +98,14 @@ func _finished_time():
 
 func _wake_up_franky():
 	set_can_move(true)
+#	MOV_SPEED = 200
 	blackboard.set("idle", false)
 	blackboard.set("wake_up", true)
 	blackboard.set("patrol_time_finished", false)
 	blackboard.set("chase_time_finished", true)
 
 func _chase_start():
+#	MOV_SPEED = 250
 	blackboard.set("patrol_time_finished", true)
 	blackboard.set("chase_time_finished", false)
 
