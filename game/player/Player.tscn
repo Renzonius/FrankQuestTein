@@ -3,7 +3,7 @@
 [ext_resource path="res://game/player/PlayerT.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Character/Igor/IGOR20.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=44]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 28.0
 height = 15.0
 
@@ -299,24 +299,24 @@ graph_offset = Vector2( -199, -0.725221 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=43]
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 0, 40 )
+position = Vector2( 0, 35 )
 z_index = 30
 z_as_relative = false
 collision_mask = 2
 script = ExtResource( 1 )
-speed = Vector2( 400, 400 )
+speed = Vector2( 250, 250 )
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 0, -40 )
+position = Vector2( 0, -35 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 7
-frame = 22
+frame = 23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -30 )
-shape = SubResource( 44 )
+position = Vector2( 0, -20 )
+shape = SubResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

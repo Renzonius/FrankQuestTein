@@ -6,7 +6,7 @@ func _ready():
 
 
 func _on_play_pressed():
-	get_tree().change_scene("res://game/levels/LevelTest.tscn")
+	get_tree().change_scene("res://Assets/Scenes/Levels/Level1.tscn")
 	
 
 

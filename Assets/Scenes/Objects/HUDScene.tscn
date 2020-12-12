@@ -1,20 +1,56 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/levels/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/hud/clock.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/hud/Mario-Kart-DS.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0.282353, 0.211765, 0.32549, 1 )
+font_data = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="HUD" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 37.6301
+margin_top = 33.8461
+margin_right = 77.6301
+margin_bottom = 73.8461
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="Clock" type="Sprite" parent="HUD"]
+position = Vector2( 47.899, 18.4997 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+
+[node name="Secons" type="Label" parent="HUD"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 34.2497
+margin_top = 9.4334
+margin_right = 74.2497
+margin_bottom = 23.4334
+rect_scale = Vector2( 1.54984, 2.57274 )
+custom_fonts/font = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="HUD"]
+margin_left = -19.582
+margin_top = 74.9641
+margin_right = 51.418
+margin_bottom = 88.9641
+rect_scale = Vector2( 1.4587, 2.2514 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.882353, 0.878431, 0.694118, 1 )
+custom_colors/font_color_shadow = Color( 0.101961, 0.0745098, 0.117647, 1 )
+text = "Score:- 0000"
 __meta__ = {
 "_edit_use_anchors_": false
 }

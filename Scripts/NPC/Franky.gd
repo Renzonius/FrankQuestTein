@@ -21,7 +21,7 @@ var my_position: Vector2
 var position_player : Vector2
 var path #Camino a seguir
 
-var MOV_SPEED := 200
+var MOV_SPEED := 200 setget set_speed, get_speed
 var can_move := true setget set_can_move
 const POINT_RADIUS := 2
 
@@ -30,6 +30,11 @@ export var size_tiles : Vector2 #Tañamo de los tiles para el calculo en node_to
 
 onready var timer_end : = $TimerToChase
 
+func set_speed(value : int) -> void:
+	MOV_SPEED = value
+
+func get_speed() -> int:
+	return MOV_SPEED
 
 func set_can_move(new_value : bool ) -> void:
 	can_move = new_value

@@ -6,11 +6,18 @@ export var speed := Vector2(1.0, 1.0)
 var object_to_interact:ObjectBook
 var can_move := true setget set_can_move
 
+var score: int = 0 setget set_score, get_score
 
 onready var can_interact := false setget set_can_interact
 onready var animation_player = $AnimationPlayer
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
+
+func set_score(value: int)->void:
+	score = value
+
+func get_score()-> int:
+	return score
 
 func set_can_move(value: bool) -> void:
 	can_move = value

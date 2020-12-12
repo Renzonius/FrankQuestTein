@@ -19,8 +19,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 40 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 30.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle_front"
@@ -301,6 +301,7 @@ script = ExtResource( 8 )
 size_tiles = Vector2( 32, 32 )
 
 [node name="PlayerInteract" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteract"]
 position = Vector2( 0, -32 )
@@ -312,9 +313,9 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 7
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -32 )
 shape = SubResource( 2 )
 
